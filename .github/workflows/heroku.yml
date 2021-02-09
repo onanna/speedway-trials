@@ -1,8 +1,9 @@
 name: Deploy to Heroku
 on:
-  workflow_dispatch:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Java CI with Gradle"]
+    types: 
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
