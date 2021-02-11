@@ -15,7 +15,7 @@ public class Driver {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long driverId;
 	
 	private String firstName;
 	
@@ -32,7 +32,7 @@ public class Driver {
 	
 	private int losses;
 	
-	@OneToMany(mappedBy = "driver")
+	@OneToMany(mappedBy = "owner")
 	private List<Racecar> racecars;
 	
 	
@@ -54,8 +54,8 @@ public class Driver {
 		this.racecars = racecars;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getDriverId() {
+		return driverId;
 	}
 
 	public String getFirstName() {

@@ -1,10 +1,9 @@
 {
-    "id": 43,
     "nickName": "The Condor",
     "model": "Corvette",
     "year": 2019,
     "available": true,
     "topSpeed": 189,
     "type": "Truck",
-    "owner": 332
+    "owner": 1
 }

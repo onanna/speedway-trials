@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galvanize.speedway.entity.Driver;
+import com.galvanize.speedway.TestHelper;
 import com.galvanize.speedway.entity.Racecar;
 import com.galvanize.speedway.repository.RacecarRepository;
 
@@ -38,9 +36,9 @@ public class RacecarServiceTest {
 	@Test
 	public void test_createRacecars() throws JsonParseException, JsonMappingException, IOException {
 
-		Racecar racecar = generateRacecar();
-		Driver driver = generateDriver();
-		racecar.setDriver(driver);
+		Racecar racecar = TestHelper.generateRacecar();
+		//Driver driver = TestHelper.generateDriver();
+		//racecar.setId(id);(driver);
 
 		when(racecarRepo.save(Mockito.any(Racecar.class))).thenReturn(racecar);
 
@@ -56,18 +54,6 @@ public class RacecarServiceTest {
 		verify(racecarRepo).save(Mockito.any(Racecar.class));
 	}
 
-	private Racecar generateRacecar() throws JsonParseException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		Racecar racecar = mapper.readValue(new File("src/test/resources/racecar.json"), Racecar.class);
-		return racecar;
-
-	}
-
-	private Driver generateDriver() throws JsonParseException, JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		Driver driver = mapper.readValue(new File("src/test/resources/driver.json"), Driver.class);
-		return driver;
-
-	}
+	
 
 }

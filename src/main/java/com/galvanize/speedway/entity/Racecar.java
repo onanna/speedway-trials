@@ -1,13 +1,9 @@
 package com.galvanize.speedway.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Racecar {
@@ -20,9 +16,10 @@ public class Racecar {
 
 	private String model;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Driver driver;	
+	//@ManyToOne
+	@JoinColumn(name = "driver_id")
+	//@JsonIgnore
+	private Long owner;	
 
 	private boolean available;
 
@@ -31,22 +28,35 @@ public class Racecar {
 	private String type;
 
 	private int year;
+	
+	//private Long owner;
 
 	public Racecar() {
 
 	}
 
-	public Racecar(String nickName, String model, Driver driver, boolean available, int topSpeed, String type,
-			int year) {
+//	public Racecar(String nickName, String model, Driver driver, boolean available, int topSpeed, String type,
+//			int year) {
+//		super();
+//		this.nickName = nickName;
+//		this.model = model;
+//		this.driver = driver;
+//		this.available = available;
+//		this.topSpeed = topSpeed;
+//		this.type = type;
+//		this.year = year;
+//		//this.owner = driver.getId();
+//	}
+
+	public Racecar(String nickName, String model, Long owner, boolean available, int topSpeed, String type, int year) {
 		super();
 		this.nickName = nickName;
 		this.model = model;
-		this.driver = driver;
+		this.owner = owner;
 		this.available = available;
 		this.topSpeed = topSpeed;
 		this.type = type;
 		this.year = year;
-		//this.owner = driver.getId();
 	}
 
 	public Long getId() {
@@ -65,9 +75,9 @@ public class Racecar {
 		return model;
 	}
 
-	public Driver getDriver() {
-		return driver;
-	}
+//	public Driver getDriver() {
+//		return driver;
+//	}
 
 	public boolean isAvailable() {
 		return available;
@@ -88,14 +98,18 @@ public class Racecar {
 	public int getYear() {
 		return year;
 	}
-	
+
 	public Long getOwner() {
-		return this.driver.getId();
+		return owner;
 	}
 	
-	public void setDriver(Driver driver) {
-		this.driver = driver;
-	}
+//	public Long getOwner() {
+//		return this.driver.getDriverId();
+//	}
+	
+//	public void setDriver(Driver driver) {
+//		this.driver = driver;
+//	}
 	
 	
 
