@@ -3,18 +3,13 @@ package com.galvanize.speedway.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Driver {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long driverId;
 	
 	private String firstName;
@@ -24,8 +19,7 @@ public class Driver {
 	private String nickName;
 	
 	private int age;
-	
-	@Temporal(TemporalType.DATE)
+
 	private Date birthDate;
 	
 	private int wins;
